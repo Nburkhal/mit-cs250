@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun 13 23:18:26 2017
-@author: mmonforte
 Write a program to calculate the credit card balance after one year 
 if a person only pays the minimum monthly payment required by the credit card company each month.
 The following variables contain values as described below:
