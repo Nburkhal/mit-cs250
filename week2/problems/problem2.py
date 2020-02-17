@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 15 21:13:57 2017
-@author: mmonforte
 Now write a program that calculates the minimum fixed monthly payment needed 
 in order pay off a credit card balance within 12 months. 
 By a fixed monthly payment, we mean a single number which does not change each month, 
