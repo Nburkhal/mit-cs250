@@ -8,6 +8,7 @@
 # (so be sure to read the docstrings!)
 
 import random
+import string
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -74,7 +75,18 @@ def getGuessedWord(secretWord, lettersGuessed):
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE...
+    secretWord = secretWord[:]
+    guessedWord = ''
+
+    for i in secretWord:
+      
+      if i in lettersGuessed:
+        guessedWord += i
+      
+      else:
+        guessedWord += '_'
+
+    return guessedWord
 
 
 
@@ -84,7 +96,12 @@ def getAvailableLetters(lettersGuessed):
     returns: string, comprised of letters that represents what letters have not
       yet been guessed.
     '''
-    # FILL IN YOUR CODE HERE...
+    all_letters = string.ascii_lowercase
+    
+    available_letters = list(filter(lambda ch: ch not in lettersGuessed,
+                                    all_letters))
+    
+    return ''.join(available_letters)
     
 
 def hangman(secretWord):
@@ -107,7 +124,42 @@ def hangman(secretWord):
 
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE...
+    print ("Welcome to the game, Hangman!")
+    print ("I'm thinking of a word that is " + str(len(secretWord)) + " letters long.")
+    
+    lettersGuessed = ''
+    guessesLeft = 8
+    
+    print ("------------")
+    
+    while True:
+        
+        print ("You have " + str(guessesLeft) + " guesses left.")
+        print ("Available letters: " + getAvailableLetters(lettersGuessed))
+        
+        guess = input("Please guess a letter: ")
+        
+        if guess in secretWord and guess not in lettersGuessed:
+            lettersGuessed += guess
+            print ("Good guess: " + getGuessedWord(secretWord, lettersGuessed))
+        
+        elif guess in lettersGuessed:
+            print ("Oops! You've already guessed that letter: " + getGuessedWord(secretWord, lettersGuessed))
+        
+        else:
+            lettersGuessed += guess
+            print ("Oops! That letter is not in my word: " + getGuessedWord(secretWord, lettersGuessed))
+            guessesLeft -= 1
+        
+        print ("------------")
+        
+        if guessesLeft <= 0:
+            print ("Sorry, You've ran out of guesses. The word was " + secretWord + ".")
+            break
+        
+        if isWordGuessed(secretWord, lettersGuessed):
+            print ("Congratulations! You've won!")
+            break
 
 
 
