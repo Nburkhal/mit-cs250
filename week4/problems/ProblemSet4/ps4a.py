@@ -199,7 +199,18 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    valid = word in wordList
+    usedLetters = {}
+    
+    for letter in word:
+        usedLetters[letter] = usedLetters.get(letter, 0) + 1
+    
+    for letter in usedLetters.keys():
+        if hand.get(letter, 0) < usedLetters[letter]:
+            valid = False
+            break
+    
+    return valid
 
 
 #
