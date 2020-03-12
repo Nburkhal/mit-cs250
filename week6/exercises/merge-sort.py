@@ -18,3 +18,17 @@ def merge(left, right):
         j += 1
 
     return result
+
+
+def merge_sort(L):
+    if len(L) < 2:
+        return L[:]
+
+    else:
+        middle = len(L)//2
+        left = merge_sort(L[:middle])
+        right = merge_sort(L[middle:])
+        return merge(left, right)
+
+# divide list successively into halves
+# depth-first such that conquer smallest pieces down one branch first before moving to larger pieces
